@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekumi Rowlins Iseri - Cybersecurity & Tech Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#070a12',
+                            darker: '#0b1120',
+                            dark: '#111827',
+                            slate: '#1f2937',
+                            cyan: '#06b6d4',
+                            blue: '#3b82f6',
+                            neon: '#00f0ff',
+                            emerald: '#10b981',
+                            accent: '#6366f1',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 18s linear infinite',
+                        'scanline': 'scanline 8s linear infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(6, 182, 212, 0.35), inset 0 0 15px rgba(6, 182, 212, 0.15)' },
+                            '50%': { boxShadow: '0 0 40px rgba(6, 182, 212, 0.75), inset 0 0 25px rgba(6, 182, 212, 0.35)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #070a12;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.18);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.55);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px -10px rgba(6, 182, 212, 0.25);
+        }
+
+        /* Grid Background Overlay */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070a12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-cyber-cyan selection:text-black">
+
+    <!-- Interactive Canvas Particle Cyber Node Background -->
+    <canvas id="cyberCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo with Code Icon -->
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyber-cyan to-cyber-blue p-[2px] transition-transform duration-300 group-hover:scale-105">
+                        <div class="w-full h-full bg-cyber-black rounded-[10px] flex items-center justify-center text-cyber-cyan">
+                            <i class="fa-solid fa-terminal text-sm"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-base sm:text-lg font-bold tracking-tight text-white block group-hover:text-cyber-cyan transition-colors">Ekumi Rowlins Iseri</span>
+                        <span class="text-xs font-mono text-cyan-400/80 block">Cybersecurity & IT Specialist</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-7 font-mono text-xs lg:text-sm">
+                    <a href="#about" class="text-slate-300 hover:text-cyber-cyan transition-colors flex items-center space-x-1">
+                        <span class="text-cyber-cyan">&gt;</span><span>About</span>
+                    </a>
+                    <a href="#skills" class="text-slate-300 hover:text-cyber-cyan transition-colors flex items-center space-x-1">
+                        <span class="text-cyber-cyan">&gt;</span><span>Skills</span>
+                    </a>
+                    <a href="#experience" class="text-slate-300 hover:text-cyber-cyan transition-colors flex items-center space-x-1">
+                        <span class="text-cyber-cyan">&gt;</span><span>Experience</span>
+                    </a>
+                    <a href="#education" class="text-slate-300 hover:text-cyber-cyan transition-colors flex items-center space-x-1">
+                        <span class="text-cyber-cyan">&gt;</span><span>Education</span>
+                    </a>
+                    <a href="#terminal" class="text-slate-300 hover:text-cyber-cyan transition-colors flex items-center space-x-1">
+                        <span class="text-cyber-cyan">&gt;</span><span>Terminal</span>
+                    </a>
+                    <a href="#contact" class="text-slate-300 hover:text-cyber-cyan transition-colors flex items-center space-x-1">
+                        <span class="text-cyber-cyan">&gt;</span><span>Contact</span>
+                    </a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden md:block">
+                    <a href="#contact" class="px-4 py-2 text-xs font-mono font-semibold text-cyber-black bg-gradient-to-r from-cyber-cyan to-cyber-blue rounded-lg shadow-lg hover:brightness-110 transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Hire / Connect</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-b border-slate-800 px-4 pt-2 pb-6 space-y-3 font-mono text-sm">
+            <a href="#about" class="block px-3 py-2 rounded-md text-slate-200 hover:bg-slate-800 hover:text-cyber-cyan">About</a>
+            <a href="#skills" class="block px-3 py-2 rounded-md text-slate-200 hover:bg-slate-800 hover:text-cyber-cyan">Skills</a>
+            <a href="#experience" class="block px-3 py-2 rounded-md text-slate-200 hover:bg-slate-800 hover:text-cyber-cyan">Experience</a>
+            <a href="#education" class="block px-3 py-2 rounded-md text-slate-200 hover:bg-slate-800 hover:text-cyber-cyan">Education</a>
+            <a href="#terminal" class="block px-3 py-2 rounded-md text-slate-200 hover:bg-slate-800 hover:text-cyber-cyan">Terminal</a>
+            <a href="#contact" class="block px-3 py-2 rounded-md text-slate-200 hover:bg-slate-800 hover:text-cyber-cyan">Contact</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="relative z-10 pt-20">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-grid-pattern">
+            <div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left: Info & Headline -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan font-mono text-xs">
+                        <span class="w-2 h-2 rounded-full bg-cyber-neon animate-ping"></span>
+                        <span>CYBERSECURITY & DATA ANALYTICS CONSULTANT</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Ekumi Rowlins <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-cyber-blue to-purple-400">
+                            Iseri
+                        </span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed mx-auto lg:mx-0 font-light">
+                        Multidisciplinary technology professional specializing in <span class="text-cyber-cyan font-medium">Cybersecurity</span>, <span class="text-cyber-blue font-medium">Data Analytics (Power BI, Python, Excel)</span>, <span class="text-emerald-400 font-medium">Frontend Web Engineering</span>, Quality Assurance, and Tech Education.
+                    </p>
+
+                    <!-- Contact Details Quick Bar -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-mono text-slate-300 pt-2">
+                        <a href="mailto:ekumiiseri@gmail.com" class="flex items-center space-x-2 px-3 py-2 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyber-cyan hover:text-cyber-cyan transition-all">
+                            <i class="fa-solid fa-envelope text-cyber-cyan"></i>
+                            <span>ekumiiseri@gmail.com</span>
+                        </a>
+                        <a href="tel:+237651101312" class="flex items-center space-x-2 px-3 py-2 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-cyber-cyan hover:text-cyber-cyan transition-all">
+                            <i class="fa-solid fa-phone text-cyber-cyan"></i>
+                            <span>+237 651-101-312</span>
+                        </a>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                        <a href="#contact" class="px-6 py-3 text-xs sm:text-sm font-mono font-semibold rounded-lg bg-cyber-cyan text-cyber-black hover:bg-cyan-400 transition-all shadow-lg shadow-cyber-cyan/25 flex items-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Initiate Contact</span>
+                        </a>
+                        <a href="#terminal" class="px-6 py-3 text-xs sm:text-sm font-mono font-semibold rounded-lg bg-slate-800/80 text-slate-200 border border-slate-700 hover:border-cyber-cyan hover:text-white transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-terminal text-cyber-cyan"></i>
+                            <span>Launch Terminal Simulator</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Media Icon Row -->
+                    <div class="pt-6 border-t border-slate-800/80 flex items-center justify-center lg:justify-start space-x-4">
+                        <span class="text-xs font-mono text-slate-400">NETWORKS:</span>
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/iseri-ekumi-rowlins-b9838a297?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-slate-900/90 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan hover:shadow-lg hover:shadow-cyber-cyan/20 transition-all" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-base"></i>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/invites/contact/?utm_content=43dcwpi&dlrf=1druv9jlen7do" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-slate-900/90 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-400 hover:shadow-lg hover:shadow-pink-500/20 transition-all" title="Instagram">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/ekumi.rowlins" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-slate-900/90 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-blue-500 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 transition-all" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-base"></i>
+                        </a>
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/message/X7C2CLMY6MT2J1" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-slate-900/90 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-cyber-emerald hover:border-cyber-emerald hover:shadow-lg hover:shadow-emerald-500/20 transition-all" title="WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Vector Avatar Container & Tech Badge Matrix -->
+                <div class="lg:col-span-5 flex justify-center relative">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 group">
+                        
+                        <!-- Glowing Cyber Rings -->
+                        <div class="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-cyber-cyan via-cyber-blue to-purple-600 opacity-75 blur-lg group-hover:opacity-100 transition duration-1000 animate-pulse-glow"></div>
+                        <div class="absolute -inset-4 rounded-full border border-dashed border-cyber-cyan/40 animate-spin-slow pointer-events-none"></div>
+
+                        <!-- Inner Vector Shield & Badge Canvas -->
+                        <div class="relative w-full h-full rounded-3xl bg-slate-950 border border-cyber-cyan/50 p-6 flex flex-col items-center justify-center text-center shadow-2xl overflow-hidden">
+                            
+                            <!-- Animated Grid Lines -->
+                            <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-scanline"></div>
+
+                            <!-- Sleek SVG Cyber Shield Vector Icon -->
+                            <img src="data:image/jpeg;base64,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" alt="Portrait of Ekumi Rowlins Iseri" class="w-28 h-28 mb-4 rounded-full object-cover border-2 border-cyber-cyan/60 shadow-lg" style="object-position:center top">
+
+                            <span class="text-xs font-mono text-cyber-cyan tracking-widest uppercase font-semibold">IDENTITY CREDENTIAL</span>
+                            <h3 class="text-xl font-bold text-white mt-1">EKUMI R. ISERI</h3>
+                            <p class="text-xs font-mono text-slate-400 mt-1">B.Sc. Cybersecurity | Oracle DBA</p>
+
+                            <!-- Mini Vector Badges Grid -->
+                            <div class="grid grid-cols-3 gap-2 mt-5 w-full font-mono text-[10px]">
+                                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-cyber-cyan flex flex-col items-center">
+                                    <i class="fa-solid fa-shield-halved text-xs mb-1"></i>
+                                    <span>SecOps</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-cyber-blue flex flex-col items-center">
+                                    <i class="fa-solid fa-chart-pie text-xs mb-1"></i>
+                                    <span>Analytics</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-purple-400 flex flex-col items-center">
+                                    <i class="fa-solid fa-database text-xs mb-1"></i>
+                                    <span>Oracle</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Status Badge Overlay -->
+                        <div class="absolute -bottom-3 -right-3 glass-panel px-3 py-1.5 rounded-full border border-cyber-cyan/40 flex items-center space-x-2 text-xs font-mono shadow-xl z-20">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="text-white font-semibold">Active Technical Consultant</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-cyber-cyan font-mono text-xs tracking-wider uppercase block mb-2">// BIOGRAPHY & EXECUTIVE PROFILE</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">About Ekumi Rowlins Iseri</h2>
+                <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- Left Vector Badge Panel -->
+                <div class="lg:col-span-4 glass-card p-6 rounded-2xl flex flex-col justify-between border border-slate-800">
+                    <div class="space-y-4">
+                        <div class="w-16 h-16 rounded-2xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-2">
+                            <i class="fa-solid fa-user-gear text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Technical Ecosystem</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-mono">
+                            Combining analytical rigor with secure system architectures to solve complex enterprise problems.
+                        </p>
+                    </div>
+
+                    <!-- Vector Badge Indicators -->
+                    <div class="space-y-3 pt-6 border-t border-slate-800 font-mono text-xs">
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <span class="text-slate-400"><i class="fa-solid fa-shield text-cyber-cyan mr-2"></i>Security Standard</span>
+                            <span class="text-cyber-cyan font-semibold">ISO/IEC Grade</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <span class="text-slate-400"><i class="fa-solid fa-database text-cyber-blue mr-2"></i>Database Admin</span>
+                            <span class="text-cyber-blue font-semibold">Oracle Certified</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <span class="text-slate-400"><i class="fa-solid fa-chalkboard-user text-emerald-400 mr-2"></i>Instructor</span>
+                            <span class="text-emerald-400 font-semibold">CS & Math</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Detailed Bio -->
+                <div class="lg:col-span-8 glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-bold text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-terminal text-cyber-cyan"></i>
+                            <span>Core Professional Focus</span>
+                        </h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Ekumi Rowlins Iseri is a versatile technical expert holding dual degrees in <strong class="text-cyber-cyan">B.Sc. Cybersecurity</strong> and <strong class="text-cyber-cyan">B.Sc. Computing and Information Systems</strong>, alongside an official <strong class="text-cyber-blue">Oracle Database Administrator</strong> certification.
+                        </p>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            With extensive experience spanning academic instruction in computer mathematics and programming, quality assurance engineering across multinational corporations (Samsung Cairo, Odigeo), data analysis using Python and Power BI, and frontline service operations, Ekumi brings a holistic multi-domain perspective to every technical challenge.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Metrics -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800 mt-6 font-mono text-center">
+                        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-cyber-cyan">2+</div>
+                            <div class="text-[10px] text-slate-400">B.Sc. Degrees</div>
+                        </div>
+                        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-cyber-blue">4+</div>
+                            <div class="text-[10px] text-slate-400">Tech Domains</div>
+                        </div>
+                        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-purple-400">3+</div>
+                            <div class="text-[10px] text-slate-400">Academic Institutions</div>
+                        </div>
+                        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-emerald-400">Oracle</div>
+                            <div class="text-[10px] text-slate-400">DBA Certified</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INTERACTIVE SKILLS GRID WITH FILTERS -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-cyber-cyan font-mono text-xs tracking-wider uppercase block mb-2">// TECHNICAL COMPETENCIES</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Skills Matrix</h2>
+                <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Skill Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10 font-mono text-xs">
+                <button onclick="filterSkills('all')" class="skill-btn active px-4 py-2 rounded-lg bg-cyber-cyan text-cyber-black font-semibold shadow-lg transition-all">All Skills</button>
+                <button onclick="filterSkills('data')" class="skill-btn px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-all">Data & Analytics</button>
+                <button onclick="filterSkills('dev')" class="skill-btn px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-all">Frontend Engineering</button>
+                <button onclick="filterSkills('qa')" class="skill-btn px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-all">QA & Support</button>
+                <button onclick="filterSkills('edu')" class="skill-btn px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-all">Instruction & Math</button>
+            </div>
+
+            <!-- Skills Cards Grid -->
+            <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Skill 1: Data Analytics -->
+                <div class="skill-card glass-card p-6 rounded-2xl" data-category="data">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan">
+                            <i class="fa-solid fa-chart-line text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">DATA ANALYST</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Data Analyst (Excel, Power BI, Python)</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Data cleansing, interactive dashboard reporting, statistical modeling, and data-driven business intelligence pipelines.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Power BI & Dashboards</span>
+                            <span class="text-cyber-cyan">92%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-cyber-cyan h-1.5 rounded-full" style="width: 92%"></div>
+                        </div>
+                        <div class="flex justify-between text-slate-300 pt-1">
+                            <span>Python Data Science (Pandas/NumPy)</span>
+                            <span class="text-cyber-cyan">88%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-cyber-cyan h-1.5 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 2: Tech Instruction -->
+                <div class="skill-card glass-card p-6 rounded-2xl" data-category="edu">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                            <i class="fa-solid fa-chalkboard-user text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30">INSTRUCTION</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Python & Computer Math Instructor</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Pedagogical instruction in computer science principles, discrete mathematics, algorithmic thinking, and computational logic.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Curriculum & Teaching</span>
+                            <span class="text-purple-400">95%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-purple-500 h-1.5 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 3: Frontend Development -->
+                <div class="skill-card glass-card p-6 rounded-2xl" data-category="dev">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue">
+                            <i class="fa-solid fa-code text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/30">FRONTEND WEB</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Frontend Dev (HTML, CSS, JavaScript)</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Building responsive, accessible web layouts, glassmorphism UI components, DOM manipulations, and Tailwind CSS applications.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between text-slate-300">
+                            <span>HTML5 / CSS3 / JavaScript</span>
+                            <span class="text-cyber-blue">90%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-cyber-blue h-1.5 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 4: QA Analysis -->
+                <div class="skill-card glass-card p-6 rounded-2xl" data-category="qa">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-list-check text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">QUALITY ASSURANCE</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Quality Analyst (QA)</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Operational audit, quality benchmark compliance, SLA monitoring, system defect analysis, and service assurance.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Audit & Defect Analysis</span>
+                            <span class="text-emerald-400">93%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-emerald-400 h-1.5 rounded-full" style="width: 93%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 5: Customer Service Trainer -->
+                <div class="skill-card glass-card p-6 rounded-2xl" data-category="qa">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-headset text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">SUPPORT & TRAINING</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Customer Service & Back Office Trainer</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Onboarding representative staff, standardizing escalation workflows, and high-volume back office service handling.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Staff Onboarding & Training</span>
+                            <span class="text-amber-400">91%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-amber-400 h-1.5 rounded-full" style="width: 91%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 6: Oracle DB & Security -->
+                <div class="skill-card glass-card p-6 rounded-2xl" data-category="data">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400">
+                            <i class="fa-solid fa-database text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/30">DATABASE & SECURITY</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Oracle Database & Cybersecurity</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Relational database administration, SQL optimization, threat mitigation, network security protocols, and data protection.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="flex justify-between text-slate-300">
+                            <span>Database Administration & Sec</span>
+                            <span class="text-red-400">89%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-1.5 border border-slate-800">
+                            <div class="bg-red-400 h-1.5 rounded-full" style="width: 89%"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- WORK EXPERIENCE SECTION -->
+        <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-cyber-cyan font-mono text-xs tracking-wider uppercase block mb-2">// PROFESSIONAL HISTORY</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Work Experience</h2>
+                <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Experience Timeline Grid -->
+            <div class="space-y-6 max-w-5xl mx-auto">
+                
+                <!-- Role 1: Educational Instructor -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative overflow-hidden group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl font-bold">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">Computer Science & Mathematics Instructor</h3>
+                                <p class="text-xs font-mono text-cyber-cyan mt-0.5">British Isle International School | King David Comprehensive School | Duvaal International College Douala</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 self-start sm:self-center">CAMEROON</span>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300 font-sans list-disc list-inside leading-relaxed">
+                        <li>Instructed students in computer science, Python programming logic, and discrete mathematics.</li>
+                        <li>Designed comprehensive STEM curricula, practical coding labs, and computational thinking modules.</li>
+                        <li>Mentored upcoming technical talent in algorithms, logic gates, and software fundamentals.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2: Quality Analyst -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative overflow-hidden group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl font-bold">
+                                <i class="fa-solid fa-microscope"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Quality Analyst (QA)</h3>
+                                <p class="text-xs font-mono text-cyber-cyan mt-0.5">Odigeo & Samsung Cairo</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 self-start sm:self-center">CAIRO, EGYPT</span>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300 font-sans list-disc list-inside leading-relaxed">
+                        <li>Evaluated operational workflows, software interactions, and service output to meet rigorous SLA benchmarks.</li>
+                        <li>Performed root-cause defect analysis and recommended corrective action plans to improve delivery metrics.</li>
+                        <li>Collaborated across technical teams to standardize QA evaluation frameworks.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 3: Service Support & Back Office -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative overflow-hidden group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue text-xl font-bold">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white group-hover:text-cyber-blue transition-colors">Service Support & Back Office Operations</h3>
+                                <p class="text-xs font-mono text-cyber-cyan mt-0.5">eDreams, Opodo, & Travellink</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 self-start sm:self-center">GLOBAL BRANDS</span>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300 font-sans list-disc list-inside leading-relaxed">
+                        <li>Managed tier-2 escalation support, back-office record reconciliations, and booking management pipelines.</li>
+                        <li>Streamlined response procedures to improve resolution speed across international client bases.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 4: Customer Service Representative -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative overflow-hidden group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl font-bold">
+                                <i class="fa-solid fa-building text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">Customer Service Representative & Trainer</h3>
+                                <p class="text-xs font-mono text-cyber-cyan mt-0.5">Xceed Smart Village, Cairo</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 self-start sm:self-center">CAIRO, EGYPT</span>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300 font-sans list-disc list-inside leading-relaxed">
+                        <li>Delivered customer service resolution and conducted onboarding training for support representatives.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCATIONAL BACKGROUND SECTION -->
+        <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-cyber-cyan font-mono text-xs tracking-wider uppercase block mb-2">// ACADEMIC QUALIFICATIONS</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Educational Background</h2>
+                <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Degree 1 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-cyber-cyan transition-all">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4">
+                            <i class="fa-solid fa-shield-halved text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono text-cyber-cyan uppercase tracking-widest block mb-1">BACHELOR OF SCIENCE</span>
+                        <h3 class="text-xl font-bold text-white mb-2">B.Sc. in Cybersecurity</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Focused on network defense, cryptographic algorithms, vulnerability auditing, ethical hacking, and information assurance.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 font-mono text-[10px] text-slate-500 flex items-center justify-between">
+                        <span>CORE DEGREE</span>
+                        <i class="fa-solid fa-award text-cyber-cyan"></i>
+                    </div>
+                </div>
+
+                <!-- Degree 2 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-cyber-blue transition-all">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue mb-4">
+                            <i class="fa-solid fa-laptop-code text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono text-cyber-blue uppercase tracking-widest block mb-1">BACHELOR OF SCIENCE</span>
+                        <h3 class="text-xl font-bold text-white mb-2">B.Sc. in Computing & Information Systems</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Comprehensive study of software engineering, system architecture, database design, and enterprise computing systems.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 font-mono text-[10px] text-slate-500 flex items-center justify-between">
+                        <span>CORE DEGREE</span>
+                        <i class="fa-solid fa-award text-cyber-blue"></i>
+                    </div>
+                </div>
+
+                <!-- Certification -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-red-400 transition-all">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 mb-4">
+                            <i class="fa-solid fa-database text-xl"></i>
+                        </div>
+                        <span class="text-[10px] font-mono text-red-400 uppercase tracking-widest block mb-1">PROFESSIONAL CERTIFICATION</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Oracle Database Administrator</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed font-sans">
+                            Certified in Oracle DB management, SQL query tuning, backup & recovery protocols, and database security controls.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 font-mono text-[10px] text-slate-500 flex items-center justify-between">
+                        <span>CERTIFIED SPECIALIST</span>
+                        <i class="fa-solid fa-certificate text-red-400"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INTERACTIVE TERMINAL SIMULATOR SECTION -->
+        <section id="terminal" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-cyber-cyan font-mono text-xs tracking-wider uppercase block mb-2">// INTERACTIVE CONSOLE</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Ekumi OS Terminal Simulator</h2>
+                <p class="text-slate-400 text-xs mt-2 font-mono">Type 'help', 'skills', 'experience', 'education', or 'contact' to query the system.</p>
+                <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Terminal Console Container -->
+            <div class="max-w-4xl mx-auto glass-panel rounded-2xl border border-cyber-cyan/40 shadow-2xl overflow-hidden font-mono text-xs">
+                <!-- Terminal Header Bar -->
+                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                        <span class="text-slate-400 text-[11px] ml-2">ekumi@cyber-node:~</span>
+                    </div>
+                    <span class="text-[10px] text-cyber-cyan">v3.8.0-RELEASE</span>
+                </div>
+
+                <!-- Terminal Body Output Area -->
+                <div id="terminalOutput" class="p-4 sm:p-6 h-80 overflow-y-auto space-y-3 bg-cyber-black/90 text-slate-200">
+                    <div>Welcome to <span class="text-cyber-cyan font-bold">Ekumi Rowlins Iseri</span> Interactive Portfolio Console.</div>
+                    <div class="text-slate-400">Type <span class="text-yellow-400 font-bold">help</span> to view available system commands.</div>
+                </div>
+
+                <!-- Terminal Input Line -->
+                <form id="terminalForm" class="p-3 bg-slate-950 border-t border-slate-800 flex items-center space-x-2">
+                    <span class="text-cyber-cyan font-bold">ekumi@cyber-node:~$</span>
+                    <input type="text" id="terminalInput" autocomplete="off" class="w-full bg-transparent border-none text-white focus:outline-none focus:ring-0 font-mono text-xs" placeholder="enter command...">
+                    <button type="submit" class="px-3 py-1 bg-cyber-cyan/20 border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan hover:text-black rounded text-[10px]">EXEC</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-cyber-cyan/30 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                    
+                    <!-- Contact Details Left -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-cyber-cyan font-mono text-xs tracking-wider uppercase block">// INITIATE DIRECT COMMUNICATION</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Let's Connect & Collaborate</h2>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Interested in cybersecurity auditing, data analytics consulting, Python instruction, or quality assurance strategy? Feel free to reach out directly through email, phone, or connected social networks.
+                        </p>
+
+                        <!-- Contact Details Stack -->
+                        <div class="space-y-4 font-mono text-xs">
+                            <a href="mailto:ekumiiseri@gmail.com" class="flex items-center space-x-3 text-slate-200 hover:text-cyber-cyan transition-colors p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <div class="w-10 h-10 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan text-base">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-slate-400 block">PRIMARY EMAIL</span>
+                                    <span class="font-semibold">ekumiiseri@gmail.com</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:+237651101312" class="flex items-center space-x-3 text-slate-200 hover:text-cyber-cyan transition-colors p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <div class="w-10 h-10 rounded-lg bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center text-cyber-blue text-base">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-slate-400 block">PHONE & MOBILE</span>
+                                    <span class="font-semibold">+237 651-101-312</span>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/message/X7C2CLMY6MT2J1" target="_blank" rel="noopener" class="flex items-center space-x-3 text-slate-200 hover:text-cyber-emerald transition-colors p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-base">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-slate-400 block">WHATSAPP DIRECT</span>
+                                    <span class="font-semibold">Message Godfather on WhatsApp</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Social Media Cards Row -->
+                        <div class="pt-4 flex flex-wrap gap-3">
+                            <a href="https://www.linkedin.com/in/iseri-ekumi-rowlins-b9838a297?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-cyber-cyan hover:text-black text-slate-200 text-xs font-mono transition-all flex items-center space-x-2 border border-slate-800">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.instagram.com/invites/contact/?utm_content=43dcwpi&dlrf=1druv9jlen7do" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-pink-500 hover:text-white text-slate-200 text-xs font-mono transition-all flex items-center space-x-2 border border-slate-800">
+                                <i class="fa-brands fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.facebook.com/ekumi.rowlins" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-blue-600 hover:text-white text-slate-200 text-xs font-mono transition-all flex items-center space-x-2 border border-slate-800">
+                                <i class="fa-brands fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Contact Form -->
+                    <div class="lg:col-span-6">
+                        <form id="contactForm" class="space-y-4 bg-slate-950/90 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">Your Name</label>
+                                <input type="text" id="senderName" required placeholder="John Doe" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">Your Email Address</label>
+                                <input type="email" id="senderEmail" required placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">Subject / Inquiry Type</label>
+                                <select id="inquiryType" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors font-mono">
+                                    <option>Cybersecurity & SecOps Consulting</option>
+                                    <option>Data Analytics & Power BI Dashboarding</option>
+                                    <option>Python & Computer Math Instruction</option>
+                                    <option>Quality Assurance Auditing</option>
+                                    <option>General Collaboration</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">Message</label>
+                                <textarea id="senderMessage" rows="4" required placeholder="Describe your technical requirements or project scope..." class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 text-xs font-mono font-bold text-cyber-black bg-gradient-to-r from-cyber-cyan to-cyber-blue rounded-lg shadow-lg hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Transmit Inquiry</span>
+                            </button>
+                            <div id="formFeedback" class="hidden text-xs font-mono text-center p-3 rounded-lg bg-cyber-emerald/10 text-cyber-emerald border border-cyber-emerald/30">
+                                Message generated and ready. Thank you for reaching out!
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-cyber-black py-8 relative z-10 font-mono text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <span class="text-white font-semibold">Ekumi Rowlins Iseri</span> &copy; 2026. All rights reserved.
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="mailto:ekumiiseri@gmail.com" class="hover:text-cyber-cyan">ekumiiseri@gmail.com</a>
+                <span>|</span>
+                <a href="tel:+237651101312" class="hover:text-cyber-cyan">+237 651-101-312</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Skill Filtering Logic
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const btns = document.querySelectorAll('.skill-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-cyber-cyan', 'text-cyber-black', 'font-semibold');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            event.target.classList.remove('bg-slate-800', 'text-slate-300');
+            event.target.classList.add('bg-cyber-cyan', 'text-cyber-black', 'font-semibold');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Contact Form Processing
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const feedback = document.getElementById('formFeedback');
+            const btn = form.querySelector('button[type="submit"]');
+            const show = (msg, ok) => {
+                feedback.innerHTML = msg;
+                feedback.classList.remove('hidden');
+                setTimeout(() => feedback.classList.add('hidden'), 8000);
+            };
+            btn.disabled = true;
+            fetch('https://formsubmit.co/ajax/ekumiiseri@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    name: document.getElementById('senderName').value,
+                    email: document.getElementById('senderEmail').value,
+                    inquiry: document.getElementById('inquiryType').value,
+                    message: document.getElementById('senderMessage').value,
+                    _subject: 'New portfolio message: ' + document.getElementById('inquiryType').value,
+                    _replyto: document.getElementById('senderEmail').value
+                })
+            }).then(r => { if (!r.ok) throw 0; show('Message sent. Thank you for reaching out!'); form.reset(); })
+              .catch(() => show('Could not send. Please email <a class="underline" href="mailto:ekumiiseri@gmail.com">ekumiiseri@gmail.com</a>.'))
+              .finally(() => { btn.disabled = false; });
+        });
+
+        // Terminal Simulator Commands Execution
+        const terminalOutput = document.getElementById('terminalOutput');
+        const terminalForm = document.getElementById('terminalForm');
+        const terminalInput = document.getElementById('terminalInput');
+
+        const commands = {
+            'help': 'Available commands: <span class="text-cyber-cyan">skills</span>, <span class="text-cyber-cyan">experience</span>, <span class="text-cyber-cyan">education</span>, <span class="text-cyber-cyan">contact</span>, <span class="text-cyber-cyan">clear</span>',
+            'skills': 'SKILLS MATRIX:<br>- Data Analyst (Excel, Power BI, Python)<br>- Computer Math & Python Instructor<br>- Frontend Engineering (HTML, CSS, JS)<br>- Quality Assurance & SLA Compliance<br>- Oracle Database & Cybersecurity',
+            'experience': 'EXPERIENCE SUMMARY:<br>- Instructor CS & Math (British Isle, King David, Duvaal)<br>- Quality Analyst (Odigeo & Samsung Cairo)<br>- Service Support & Back Office (eDreams, Opodo, Travellink)<br>- Customer Service & Trainer (Xceed Smart Village Cairo)',
+            'education': 'DEGREES & ACCREDITATION:<br>- B.Sc. Cybersecurity<br>- B.Sc. Computing & Information Systems<br>- Oracle Certified Database Administrator',
+            'contact': 'CONTACT CREDENTIALS:<br>- Email: ekumiiseri@gmail.com<br>- Phone: +237651101312<br>- WhatsApp: wa.me/message/X7C2CLMY6MT2J1'
+        };
+
+        terminalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const rawVal = terminalInput.value.trim();
+            const cmd = rawVal.toLowerCase();
+            
+            if (!cmd) return;
+
+            const newLine = document.createElement('div');
+            newLine.innerHTML = `<span class="text-cyber-cyan font-bold">ekumi@cyber-node:~$</span> ${rawVal}`;
+            terminalOutput.appendChild(newLine);
+
+            if (cmd === 'clear') {
+                terminalOutput.innerHTML = '';
+            } else if (commands[cmd]) {
+                const responseLine = document.createElement('div');
+                responseLine.className = 'text-slate-300 pl-4 py-1 border-l-2 border-cyber-cyan';
+                responseLine.innerHTML = commands[cmd];
+                terminalOutput.appendChild(responseLine);
+            } else {
+                const errLine = document.createElement('div');
+                errLine.className = 'text-red-400 pl-4';
+                errLine.innerHTML = `Command not recognized: '${rawVal}'. Type 'help' for list of commands.`;
+                terminalOutput.appendChild(errLine);
+            }
+
+            terminalInput.value = '';
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        });
+
+        // Background Cyber Node Network Canvas
+        const canvas = document.getElementById('cyberCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const nodes = [];
+        const nodeCount = Math.min(Math.floor(window.innerWidth / 20), 60);
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < nodes.length; i++) {
+                let nodeA = nodes[i];
+                nodeA.x += nodeA.vx;
+                nodeA.y += nodeA.vy;
+
+                if (nodeA.x < 0 || nodeA.x > canvas.width) nodeA.vx *= -1;
+                if (nodeA.y < 0 || nodeA.y > canvas.height) nodeA.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(nodeA.x, nodeA.y, nodeA.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#06b6d4';
+                ctx.fill();
+
+                for (let j = i + 1; j < nodes.length; j++) {
+                    let nodeB = nodes[j];
+                    let dx = nodeA.x - nodeB.x;
+                    let dy = nodeA.y - nodeB.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodeA.x, nodeA.y);
+                        ctx.lineTo(nodeB.x, nodeB.y);
+                        ctx.strokeStyle = `rgba(6, 182, 212, ${1 - dist / 120})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.onload = function() {
+            animateCanvas();
+        }
+    </script>
+</body>
+</html>
